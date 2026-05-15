@@ -67,6 +67,22 @@ export const charsOccur = (sentence: string, char: string): number => {
     console.log(result)
     return result
 }
+/**
+ * Converts a snake_case string to camelCase.
+ *
+ * @param data - The snake_case string to convert
+ * @returns The string converted to camelCase
+ *
+ * @example
+ * toCamelCase("hello_world")       // "helloWorld"
+ * toCamelCase("my_variable_name")  // "myVariableName"
+ * toCamelCase("hello")             // "hello"
+ */
+export const toCamelCase = (data: string): string => {
+    const splitted = data.split('_').map((split, i)=> i===0?split.toLowerCase() : split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('')
+    console.log(splitted)
+    return splitted
+} 
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -77,3 +93,5 @@ isExclamationMarkEnding('Wow !')
 reverseWord("Je mange une pomme")
 //Exmple 5 - SHould return 2
 charsOccur("Bonjour je m'apelle Lucas", "o")
+//Exemple 6 - Should return userFirstName
+toCamelCase('user_first_name')
