@@ -135,13 +135,10 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
  * @example
  * createObjectFromArrays(["Alice", "Bob"], [100, 85])  // { Alice: 100, Bob: 85 }
  */
-export const createObjectFromArrays = (
-    array1: Array<string>,
-    array2: Array<number>
-) => {
-    const result = Object.fromEntries(array1.map((val, i) => [val, array2[i]]))
-    return result
+export const createObjectFromArrays = (keys: string[], values: number[]) => {
+    const result = Object.fromEntries(keys.map((val, i) => [val, values[i]]))
     console.log(result)
+    return result
 }
 
 /**
