@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -96,3 +96,11 @@ const gameScores = {
     level4: 1020
 };
 findMaxValue(gameScores)
+
+//Exemple 12 - Should return { pommes: 2.5, bananes: 1.8, oranges: 2.2 }
+const productPairs: [string,number][] = [
+    ["pommes", 2.5],
+    ["bananes", 1.8],
+    ["oranges", 2.2]
+];
+createObjectFromPairs(productPairs)

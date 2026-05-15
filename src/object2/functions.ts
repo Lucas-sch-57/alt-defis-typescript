@@ -84,3 +84,9 @@ export const findMaxValue = (scores: NumberObject) => {
     console.log(result)
     return result
 }
+
+export const createObjectFromPairs = (products: Array<[string,number]>) => {
+    const result = Object.fromEntries(products)
+    console.log(result)
+    return result
+}
