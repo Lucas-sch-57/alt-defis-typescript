@@ -90,3 +90,19 @@ export const createObjectFromPairs = (products: Array<[string,number]>) => {
     console.log(result)
     return result
 }
+
+export const findValueInObject = (config: Object, search: string, path: string[]): string[] | null => {
+    for (const [key,value] of Object.entries(config)) {
+        if(value === search){
+            return [...path, key]
+        }
+        if(typeof value === 'object' && value !== null) {
+            const result = findValueInObject(value, search, [...path,key])
+            if(result){
+                return result
+            }
+        }
+    }
+
+    return null
+}

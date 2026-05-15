@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -104,3 +104,18 @@ const productPairs: [string,number][] = [
     ["oranges", 2.2]
 ];
 createObjectFromPairs(productPairs)
+
+//Exemple 13 - Should return ["app", "settings", "theme"]
+const config = {
+    app: {
+        name: "MonApp",
+        settings: {
+            theme: "dark",
+            notifications: {
+                email: true,
+                push: false
+            }
+        }
+    }
+};
+console.log(findValueInObject(config,'dark', []))
