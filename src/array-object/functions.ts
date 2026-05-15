@@ -1,4 +1,4 @@
-import { Book, Employee, Product, User } from "./array-object"
+import { Book, Employee, Product, Transaction, User } from "./array-object"
 
 export const filterByProperty = (users: User[], key: keyof User, property2: string | boolean | number) => {
     return users.filter((user)=> user[key] === property2)
@@ -23,3 +23,22 @@ export const findIntersection = (library1: Book[], library2: Book[], property: k
 export const transformArray = (employees: Employee[], transformer: (emp: Employee) => object) => {
     return employees.map(transformer)
 }
+
+export const aggregateData = (transactions: Transaction[], filter: keyof Transaction, aggregate: keyof Transaction) => {
+    return transactions.reduce((acc: Record<string,any>, transac)=>{
+        const key = transac[filter] as string
+        const val = transac[aggregate] as number
+        if(acc[key]){
+            return {
+                ...acc,
+                [key]: acc[key] + val
+            }
+        }else {
+            return {
+                ...acc,
+                [key]: val
+            }
+        }
+    },{})
+}
+

@@ -1,6 +1,6 @@
 //Exemple 1 - [{id: 1, name: 'Alice', age: 25, active: true}, {id: 3, name: 'Charlie', age: 35, active: true}]
 
-import { filterByProperty, findIntersection, groupBy, transformArray } from "./functions";
+import { aggregateData, filterByProperty, findIntersection, groupBy, transformArray } from "./functions";
 
 export interface User {
     id: number;
@@ -73,3 +73,18 @@ const transformer = (emp: Employee) => ({
 });
 
 console.log(transformArray(employees,transformer))
+
+//Exemple 5 - Should return { Food: 150, Income: 75 }
+export interface Transaction {
+    id: number;
+    type: 'credit' | 'debit';
+    amount: number;
+    category: string;
+}
+
+const transactions: Transaction[] = [
+    { id: 1, type: 'debit', amount: 100, category: 'Food' },
+    { id: 2, type: 'debit', amount: 50, category: 'Food' },
+    { id: 3, type: 'credit', amount: 75, category: 'Income' }
+];
+console.log(aggregateData(transactions, 'category', 'amount'));
