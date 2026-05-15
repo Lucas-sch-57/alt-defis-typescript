@@ -25,7 +25,7 @@ export const getObjectValues = (object: NumberObject): Array<number> => {
  * @example
  * transformValues({ price: 100 }, val => val * 1.1)  // { price: 110 }
  */
-export const transformValues = (object: NumberObject, toDollars: Function): NumberObject => {
+export const transformValues = (object: NumberObject, toDollars: (value: number)=>number): NumberObject => {
     const result = Object.fromEntries(Object.entries(object).map(([key, value]) => [key, toDollars(value)]))
     console.log(result)
     return result
@@ -118,6 +118,7 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
  */
 export const createObjectFromArrays = (array1: Array<string>, array2: Array<number>) => {
     const result = Object.fromEntries(array1.map((val, i) => [val, array2[i]]))
+    return result
     console.log(result)
 }
 
@@ -158,6 +159,7 @@ export const countValues = (data: FlatObject) => {
 export const extractProperties = (data: FlatObject, infos: ReadonlyArray<string>) => {
     const array = Object.fromEntries(Object.entries(data).filter(([key]) => infos.includes(key)))
     console.log(array)
+    return array
 }
 
 /**
