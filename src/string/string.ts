@@ -79,9 +79,9 @@ export const charsOccur = (sentence: string, char: string): number => {
  * toCamelCase("hello")             // "hello"
  */
 export const toCamelCase = (data: string): string => {
-    const splitted = data.split('_').map((split, i)=> i===0?split.toLowerCase() : split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('')
-    console.log(splitted)
-    return splitted
+    const result = data.split('_').map((split, i)=> i===0?split.toLowerCase() : split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('')
+    console.log(result)
+    return result
 } 
 /**
  * Counts the number of vowels in a string.
