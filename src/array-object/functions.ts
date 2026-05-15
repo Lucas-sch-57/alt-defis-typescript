@@ -84,13 +84,10 @@ export const transformArray = (employees: Employee[], transformer: (emp: Employe
  * { Food: 150, Income: 75 }
  */
 export const aggregateData = (transactions: Transaction[], filter: keyof Transaction, aggregate: keyof Transaction) => {
-    return transactions.reduce((acc: Record<string, any>, transac) => {
+    return transactions.reduce((acc: Record<string, number>, transac) => {
         const key = transac[filter] as string
         const val = transac[aggregate] as number
-        if (acc[key]) {
-            return { ...acc, [key]: acc[key] + val }
-        } else {
-            return { ...acc, [key]: val }
-        }
+        acc[key] = (acc[key] || 0)+val
+        return acc
     }, {})
 }
