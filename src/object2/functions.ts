@@ -1,4 +1,4 @@
-import { FlatObject, NumberObject } from "./types/object";
+import { FlatObject, NumberObject } from './types/object'
 
 /**
  * Returns all values of a numeric object as an array.
@@ -25,8 +25,13 @@ export const getObjectValues = (object: NumberObject): Array<number> => {
  * @example
  * transformValues({ price: 100 }, val => val * 1.1)  // { price: 110 }
  */
-export const transformValues = (object: NumberObject, toDollars: (value: number)=>number): NumberObject => {
-    const result = Object.fromEntries(Object.entries(object).map(([key, value]) => [key, toDollars(value)]))
+export const transformValues = (
+    object: NumberObject,
+    toDollars: (value: number) => number
+): NumberObject => {
+    const result = Object.fromEntries(
+        Object.entries(object).map(([key, value]) => [key, toDollars(value)])
+    )
     console.log(result)
     return result
 }
@@ -43,7 +48,12 @@ export const transformValues = (object: NumberObject, toDollars: (value: number)
  * { january: 1800, february: 2150 }
  */
 export const mergeObjects = (object1: NumberObject, object2: NumberObject) => {
-    const result = Object.fromEntries(Object.entries(object1).map(([key, value]) => [key, value + object2[key]]))
+    const result = Object.fromEntries(
+        Object.entries(object1).map(([key, value]) => [
+            key,
+            value + object2[key] || 0,
+        ])
+    )
     console.log(result)
     return result
 }
@@ -59,8 +69,13 @@ export const mergeObjects = (object1: NumberObject, object2: NumberObject) => {
  * filterObject({ laptop: 0, mouse: 5, keyboard: 0 }, stock => stock === 0)
  * { laptop: 0, keyboard: 0 }
  */
-export const filterObject = (inventory: NumberObject, condition: (value: number) => boolean) => {
-    const result = Object.fromEntries(Object.entries(inventory).filter(([, value]) => condition(value)))
+export const filterObject = (
+    inventory: NumberObject,
+    condition: (value: number) => boolean
+) => {
+    const result = Object.fromEntries(
+        Object.entries(inventory).filter(([, value]) => condition(value))
+    )
     console.log(result)
     return result
 }
@@ -76,16 +91,19 @@ export const filterObject = (inventory: NumberObject, condition: (value: number)
  * { app: { name: 'MyApp' }, database: { host: 'localhost' } }
  */
 export const flatToNested1 = (config: FlatObject) => {
-    const result = Object.entries(config).reduce((acc: Record<string, any>, [key, value]) => {
-        const [parent, child] = key.split('.')
-        return {
-            ...acc,
-            [parent]: {
-                ...acc[parent],
-                [child]: value
+    const result = Object.entries(config).reduce(
+        (acc: Record<string, any>, [key, value]) => {
+            const [parent, child] = key.split('.')
+            return {
+                ...acc,
+                [parent]: {
+                    ...acc[parent],
+                    [child]: value,
+                },
             }
-        }
-    }, {})
+        },
+        {}
+    )
     console.log(result)
     return result
 }
@@ -101,7 +119,9 @@ export const flatToNested1 = (config: FlatObject) => {
  * findKeysByValue({ laptop: 0, mouse: 5, keyboard: 0 }, 0)  // ["laptop", "keyboard"]
  */
 export const findKeysByValue = (data: NumberObject, searchVal: number) => {
-    const result = Object.entries(data).filter(([, val]) => val === searchVal).map(([key,]) => key)
+    const result = Object.entries(data)
+        .filter(([, val]) => val === searchVal)
+        .map(([key]) => key)
     console.log(result)
     return result
 }
@@ -116,7 +136,10 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
  * @example
  * createObjectFromArrays(["Alice", "Bob"], [100, 85])  // { Alice: 100, Bob: 85 }
  */
-export const createObjectFromArrays = (array1: Array<string>, array2: Array<number>) => {
+export const createObjectFromArrays = (
+    array1: Array<string>,
+    array2: Array<number>
+) => {
     const result = Object.fromEntries(array1.map((val, i) => [val, array2[i]]))
     return result
     console.log(result)
@@ -138,7 +161,7 @@ export const countValues = (data: FlatObject) => {
     const result = values.reduce((acc: Record<string, number>, val) => {
         return {
             ...acc,
-            [val]: acc[val] ? acc[val] + 1 : 1
+            [val]: acc[val] ? acc[val] + 1 : 1,
         }
     }, {})
     console.log(result)
@@ -156,8 +179,13 @@ export const countValues = (data: FlatObject) => {
  * extractProperties({ name: "Jean", email: "jean@email.com", age: 35 }, ["name", "age"])
  * { name: "Jean", age: 35 }
  */
-export const extractProperties = (data: FlatObject, infos: ReadonlyArray<string>) => {
-    const array = Object.fromEntries(Object.entries(data).filter(([key]) => infos.includes(key)))
+export const extractProperties = (
+    data: FlatObject,
+    infos: ReadonlyArray<string>
+) => {
+    const array = Object.fromEntries(
+        Object.entries(data).filter(([key]) => infos.includes(key))
+    )
     console.log(array)
     return array
 }
@@ -173,7 +201,9 @@ export const extractProperties = (data: FlatObject, infos: ReadonlyArray<string>
  * { Charlie: 78, Alice: 85, Bob: 92 }
  */
 export const sortObjectByValue = (data: NumberObject) => {
-    const result = Object.fromEntries(Object.entries(data).sort(([, val1], [, val2]) => val1 - val2))
+    const result = Object.fromEntries(
+        Object.entries(data).sort(([, val1], [, val2]) => val1 - val2)
+    )
     console.log(result)
     return result
 }
@@ -224,7 +254,11 @@ export const createObjectFromPairs = (products: Array<[string, number]>) => {
  * findValueInObject({ app: { settings: { theme: "dark" } } }, "dark", [])
  * ["app", "settings", "theme"]
  */
-export const findValueInObject = (config: Object, search: string, path: string[]): string[] | null => {
+export const findValueInObject = (
+    config: Object,
+    search: string,
+    path: string[]
+): string[] | null => {
     for (const [key, value] of Object.entries(config)) {
         if (value === search) {
             return [...path, key]
@@ -250,7 +284,10 @@ export const findValueInObject = (config: Object, search: string, path: string[]
  * groupByProperty([{ name: "Alice", level: "Débutant" }, { name: "Bob", level: "Avancé" }], "level")
  * { "Débutant": [{ name: "Alice", level: "Débutant" }], "Avancé": [{ name: "Bob", level: "Avancé" }] }
  */
-export const groupByProperty = (students: Array<FlatObject>, groupBy: string) => {
+export const groupByProperty = (
+    students: Array<FlatObject>,
+    groupBy: string
+) => {
     return students.reduce((acc: Record<string, FlatObject[]>, stud) => {
         const key = stud[groupBy] as string
         if (acc[key]) {
@@ -272,8 +309,13 @@ export const groupByProperty = (students: Array<FlatObject>, groupBy: string) =>
  * validateObject({ name: "Marie", age: 25 }, { name: "string", age: "number" })  // true
  * validateObject({ name: "Marie", age: "25" }, { name: "string", age: "number" }) // false
  */
-export const validateObject = (userInput: FlatObject, userSchema: FlatObject) => {
-    return Object.entries(userSchema).every(([key, val]) => typeof userInput[key] === val)
+export const validateObject = (
+    userInput: FlatObject,
+    userSchema: FlatObject
+) => {
+    return Object.entries(userSchema).every(
+        ([key, val]) => typeof userInput[key] === val
+    )
 }
 
 /**
@@ -287,7 +329,10 @@ export const validateObject = (userInput: FlatObject, userSchema: FlatObject) =>
  * compareDifferences({ name: "Jean", age: 30 }, { name: "Jean", age: 31, phone: "0123456789" })
  *  { age: { type: "modified", old: 30, new: 31 }, phone: { type: "added", new: "0123456789" } }
  */
-export const compareDifferences = (oldProfile: FlatObject, newProfile: FlatObject) => {
+export const compareDifferences = (
+    oldProfile: FlatObject,
+    newProfile: FlatObject
+) => {
     const oldKeys = Object.keys(oldProfile)
     const newKeys = Object.keys(newProfile)
 
@@ -301,7 +346,10 @@ export const compareDifferences = (oldProfile: FlatObject, newProfile: FlatObjec
         } else if (!newKeys.includes(key)) {
             return { ...acc, [key]: { type: 'removed', old: oldVal } }
         } else if (oldVal !== newVal) {
-            return { ...acc, [key]: { type: 'modified', old: oldVal, new: newVal } }
+            return {
+                ...acc,
+                [key]: { type: 'modified', old: oldVal, new: newVal },
+            }
         }
         return acc
     }, {})
@@ -342,13 +390,18 @@ export const getObjectStats = (datas: NumberObject) => {
     const average = total / values.length
     const sortedValues = [...values].sort((a, b) => a - b)
     const half = Math.floor(sortedValues.length / 2)
-    const median = sortedValues.length % 2 === 0
-        ? (sortedValues[sortedValues.length / 2 - 1] + sortedValues[sortedValues.length / 2]) / 2
-        : sortedValues[half]
-    const variance = values.reduce((acc, val) => acc + Math.pow(val - average, 2), 0) / values.length
+    const median =
+        sortedValues.length % 2 === 0
+            ? (sortedValues[sortedValues.length / 2 - 1] +
+                  sortedValues[sortedValues.length / 2]) /
+              2
+            : sortedValues[half]
+    const variance =
+        values.reduce((acc, val) => acc + Math.pow(val - average, 2), 0) /
+        values.length
     const standardDeviation = parseFloat(Math.sqrt(variance).toFixed(2))
     return {
         basic: { min, max, average, total },
-        advanced: { median, variance, standardDeviation }
+        advanced: { median, variance, standardDeviation },
     }
 }
