@@ -173,13 +173,16 @@ export const countValues = (data: FlatObject) => {
  * extractProperties({ name: "Jean", email: "jean@email.com", age: 35 }, ["name", "age"])
  * { name: "Jean", age: 35 }
  */
-export const extractProperties = (
-    data: FlatObject,
-    infos: ReadonlyArray<string>
-) => {
+export const extractProperties = <
+    T extends Record<string, unknown>,
+    K extends keyof T,
+>(
+    data: T,
+    infos: readonly K[]
+): Pick<T, K> => {
     const array = Object.fromEntries(
-        Object.entries(data).filter(([key]) => infos.includes(key))
-    )
+        Object.entries(data).filter(([key]) => infos.includes(key as K))
+    ) as Pick<T, K>
     console.log(array)
     return array
 }
