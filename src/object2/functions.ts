@@ -3,6 +3,7 @@ import {
     FlatObject,
     NestedObject,
     NumberObject,
+    ObjectStats,
 } from './types/object'
 
 /**
@@ -408,24 +409,33 @@ export const objectToUrlParams1 = (
  *    advanced: { median: 1100, variance: 52500, standardDeviation: 229.13 }
  * }
  */
-export const getObjectStats = (datas: NumberObject) => {
+export const getObjectStats = (datas: NumberObject): ObjectStats => {
     const values = Object.values(datas)
+
     const total = values.reduce((acc, val) => acc + val, 0)
+
     const min = Math.min(...values)
     const max = Math.max(...values)
+
     const average = total / values.length
+
     const sortedValues = [...values].sort((a, b) => a - b)
+
     const half = Math.floor(sortedValues.length / 2)
+
     const median =
         sortedValues.length % 2 === 0
             ? (sortedValues[sortedValues.length / 2 - 1] +
                   sortedValues[sortedValues.length / 2]) /
               2
             : sortedValues[half]
+
     const variance =
         values.reduce((acc, val) => acc + Math.pow(val - average, 2), 0) /
         values.length
+
     const standardDeviation = parseFloat(Math.sqrt(variance).toFixed(2))
+
     return {
         basic: { min, max, average, total },
         advanced: { median, variance, standardDeviation },
