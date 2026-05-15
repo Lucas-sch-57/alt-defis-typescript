@@ -385,8 +385,14 @@ export const compareDifferences = (
  * objectToUrlParams1({ query: "ordinateur portable", maxPrice: 1000 })
  * "query=ordinateur%20portable&maxPrice=1000"
  */
-export const objectToUrlParams1 = (searchParams: Record<string, any>) => {
-    return new URLSearchParams(searchParams).toString().replace(/\+/g, '%20')
+export const objectToUrlParams1 = (
+    searchParams: Record<string, string | number | boolean>
+): string => {
+    return new URLSearchParams(
+        Object.entries(searchParams).map(([key, value]) => [key, String(value)])
+    )
+        .toString()
+        .replace(/\+/g, '%20')
 }
 
 /**
