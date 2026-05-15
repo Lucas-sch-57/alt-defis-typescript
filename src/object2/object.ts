@@ -47,6 +47,11 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
     return result
 }
 
+export const createObjectFromArrays = (array1: Array<string>, array2: Array<number>) => {
+    const result = Object.fromEntries(array1.map((val,i)=> [val, array2[i]]))
+    console.log(result)
+}
+
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
     level1: 100,
@@ -99,3 +104,7 @@ const productStock = {
 };
 
 findKeysByValue(productStock, 0)
+//Exemple 7 - SHould return { Alice: 100, Bob: 85, Charlie: 90 }
+const playerNames = ["Alice", "Bob", "Charlie"];
+const scores2 = [100, 85, 90];
+createObjectFromArrays(playerNames, scores2)
