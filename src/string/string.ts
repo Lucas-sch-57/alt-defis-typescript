@@ -116,6 +116,34 @@ export const minMajAlternate = (data: string) : string => {
     console.log(result)
     return result
 }
+/**
+ * Removes consecutive duplicate characters from a string.
+ *
+ * @param data - The string to process
+ * @returns The string with consecutive duplicate characters removed
+ *
+ * @example
+ * removeDuplicate("helllo worrld")  // "helo world"
+ * removeDuplicate("aabbcc")         // "abc"
+ * removeDuplicate("hello")          // "helo"
+ */
+export const removeDuplicate = (data: string)  => {
+    const splitted = data.split('')
+    const result = splitted.filter((char,i,arr)=>{
+        if(i === 0 ){
+            return char
+        }
+        return char !== arr[i-1]
+    })
+    console.log(result.join(''))
+    return result
+}
+
+export const extractInitials = (fullName: string) => {
+    const result =  fullName.split(/\s+/).filter(Boolean).map((split)=> split.slice(0,1).toUpperCase()).join('')
+    console.log(result)
+    return result
+}
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -132,3 +160,7 @@ toCamelCase('user_first_name')
 vowelsCount("Bonjour je m'apelle Lucas")
 //Exemple 8 - Should return NaOnZoDaZoIeDjAoEjOiAjEoJaEjAoEjOaJo
 minMajAlternate("naonzodazoiedjaoejoiajeojaejaoejoajo")
+//Exemple 9 - Should return Bonjour ! J'ai besoin d'aide.
+removeDuplicate("Bonjouuuur !!! J'ai besoiiiin d'aide....")
+//Exemple 10 - Should return LS
+extractInitials("Lucas   Schiltz")
