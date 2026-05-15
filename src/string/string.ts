@@ -187,12 +187,38 @@ export const isPalindrome = (sentence: string) : boolean => {
     console.log(result)
     return result
 }
+/**
+ * Finds the longest sequence of consecutive identical characters in a string.
+ *
+ * @param input - The string to analyze
+ * @returns The longest sequence of consecutive identical characters, or `undefined` if the string is empty
+ *
+ * @example
+ * longestSequence("aaabbbbbcccc")  // "bbbbb"
+ * longestSequence("aabb")          // "aa"
+ */
 export const longestSequence = (input: string) : string | undefined => {
     const regex = /(.)\1*/g
     const array = input.match(regex)
     const result = array?.reduce((longest, curr)=>{
         return curr.length > longest.length ? curr : longest
     })
+    console.log(result)
+    return result
+}
+/**
+ * Truncates a string to a given limit and appends ellipsis if necessary.
+ *
+ * @param data - The string to truncate
+ * @param limit - The maximum number of characters before truncation
+ * @returns The truncated string with `...` appended, or the original string if within the limit
+ *
+ * @example
+ * truncate("Ceci est une très longue description d'un produit", 20)  // "Ceci est une très..."
+ * truncate("Hello", 20)                                               // "Hello"
+ */
+export const truncate = (data: string, limit: number) : string => {
+    const result = data.length > limit ? data.slice(0,limit) + '...' : data
     console.log(result)
     return result
 }
@@ -222,3 +248,5 @@ maskString("1234567890123456",4)
 isPalindrome("Eh ! ça va la vache ?")
 //Exemple 13 - Should return "bbbbb"
 longestSequence("aaabbbbbcccc")
+//Exemple 14 - Should return 'Ceci est une très...
+truncate("Ceci est une très longue description d'un produit",20)
