@@ -87,20 +87,19 @@ export const filterObject = (
  * @returns A nested object built from the dot-separated keys
  *
  * @example
- * flatToNested1({ 'app.name': 'MyApp', 'database.host': 'localhost' })
+ * flatToNested({ 'app.name': 'MyApp', 'database.host': 'localhost' })
  * { app: { name: 'MyApp' }, database: { host: 'localhost' } }
  */
-export const flatToNested1 = (config: FlatObject) => {
+export const flatToNested = (config: FlatObject) => {
     const result = Object.entries(config).reduce(
         (acc: Record<string, any>, [key, value]) => {
             const [parent, child] = key.split('.')
-            return {
-                ...acc,
-                [parent]: {
-                    ...acc[parent],
-                    [child]: value,
-                },
+            if (!acc[parent]) {
+                acc[parent] = {}
             }
+            acc[parent][child] = value
+
+            return acc
         },
         {}
     )
