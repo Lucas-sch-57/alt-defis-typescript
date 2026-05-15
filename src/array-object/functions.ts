@@ -34,9 +34,9 @@ export const groupBy = (products: Product[], filter: keyof Product) => {
             acc[key] = []
         } 
         acc[key].push(product)
-        
+
         return acc
-    }, {} as Record<string, Product[]>)
+    }, {})
 }
 
 /**
