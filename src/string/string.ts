@@ -138,11 +138,55 @@ export const removeDuplicate = (data: string)  => {
     console.log(result.join(''))
     return result
 }
-
+/**
+ * Extracts the initials from a full name.
+ *
+ * @param fullName - The full name to extract initials from
+ * @returns The initials in uppercase
+ *
+ * @example
+ * extractInitials("Jean Pierre Dupont")  // "JPD"
+ * extractInitials("john doe")            // "JD"
+ */
 export const extractInitials = (fullName: string) => {
     const result =  fullName.split(/\s+/).filter(Boolean).map((split)=> split.slice(0,1).toUpperCase()).join('')
     console.log(result)
     return result
+}
+/**
+ * Returns the last N characters of a string, masking the rest.
+ *
+ * @param string - The string to mask
+ * @param threshold - The number of characters to keep visible at the end
+ * @returns The last N characters of the string
+ *
+ * @example
+ * maskString("1234567890123456", 4)  // "3456"
+ * maskString("hello", 2)             // "lo"
+ */
+export const maskString = (string: string, threshold: number) => {
+    const result = string.slice(string.length - threshold)
+    console.log(result)
+    return result
+}
+/**
+ * Checks whether a string is a palindrome,
+ * ignoring spaces, punctuation, accents and case.
+ *
+ * @param sentence - The string to check
+ * @returns `true` if the string is a palindrome, `false` otherwise
+ *
+ * @example
+ * isPalindrome("Eh ! ça va la vache ?")  // true
+ * isPalindrome("racecar")                // true
+ * isPalindrome("hello")                  // false
+ */
+export const isPalindrome = (sentence: string) : boolean => {
+    const clean = sentence.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
+    const result = clean === clean.split('').reverse().join('')
+    console.log(result)
+    return result
+
 }
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
@@ -163,4 +207,9 @@ minMajAlternate("naonzodazoiedjaoejoiajeojaejaoejoajo")
 //Exemple 9 - Should return Bonjour ! J'ai besoin d'aide.
 removeDuplicate("Bonjouuuur !!! J'ai besoiiiin d'aide....")
 //Exemple 10 - Should return LS
-extractInitials("Lucas   Schiltz")
+extractInitials("Lucas Schiltz")
+//Exemple 11 - Should return 3456
+maskString("1234567890123456",4)
+//Exemple 12 - Should return true
+isPalindrome("Eh ! ça va la vache ?")
+
