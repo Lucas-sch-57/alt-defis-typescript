@@ -17,7 +17,6 @@ import {
  */
 export const getObjectValues = (object: NumberObject): Array<number> => {
     const result = Object.values(object)
-    console.log(result)
     return result
 }
 
@@ -38,7 +37,6 @@ export const transformValues = (
     const result = Object.fromEntries(
         Object.entries(object).map(([key, value]) => [key, toDollars(value)])
     )
-    console.log(result)
     return result
 }
 
@@ -60,7 +58,6 @@ export const mergeObjects = (object1: NumberObject, object2: NumberObject) => {
             value + object2[key] || 0,
         ])
     )
-    console.log(result)
     return result
 }
 
@@ -82,7 +79,6 @@ export const filterObject = (
     const result = Object.fromEntries(
         Object.entries(inventory).filter(([, value]) => condition(value))
     )
-    console.log(result)
     return result
 }
 
@@ -109,7 +105,6 @@ export const flatToNested = (config: FlatObject) => {
         },
         {}
     )
-    console.log(result)
     return result
 }
 
@@ -127,7 +122,6 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
     const result = Object.entries(data)
         .filter(([, val]) => val === searchVal)
         .map(([key]) => key)
-    console.log(result)
     return result
 }
 
@@ -143,7 +137,6 @@ export const findKeysByValue = (data: NumberObject, searchVal: number) => {
  */
 export const createObjectFromArrays = (keys: string[], values: number[]) => {
     const result = Object.fromEntries(keys.map((val, i) => [val, values[i]]))
-    console.log(result)
     return result
 }
 
@@ -164,7 +157,6 @@ export const countValues = (data: FlatObject) => {
         acc[val] = (acc[val] || 0) + 1
         return acc
     }, {})
-    console.log(result)
     return result
 }
 
@@ -207,7 +199,6 @@ export const sortObjectByValue = (data: NumberObject) => {
     const result = Object.fromEntries(
         Object.entries(data).sort(([, val1], [, val2]) => val1 - val2)
     )
-    console.log(result)
     return result
 }
 
@@ -227,7 +218,6 @@ export const findMaxValue = (scores: NumberObject) => {
         throw new Error('Cannot be empty')
     }
     const result = Math.max(...values)
-    console.log(result)
     return result
 }
 
@@ -243,7 +233,6 @@ export const findMaxValue = (scores: NumberObject) => {
  */
 export const createObjectFromPairs = (products: Array<[string, number]>) => {
     const result = Object.fromEntries(products)
-    console.log(result)
     return result
 }
 

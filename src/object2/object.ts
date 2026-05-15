@@ -26,7 +26,7 @@ const scores: NumberObject = {
     level2: 85,
     level3: 95,
 }
-getObjectValues(scores)
+console.log(getObjectValues(scores))
 
 //Exemple 2 - Should return { book: 22, pen: 5.5, notebook: 11 }
 const pricesInEuros = {
@@ -36,12 +36,12 @@ const pricesInEuros = {
 }
 const toDollars = (euros: number) => euros * 1.1
 
-transformValues(pricesInEuros, toDollars)
+console.log(transformValues(pricesInEuros, toDollars))
 
 //Exemple 3 - Should return { january: 1800, february: 2150, march: 2000 }
 const store1Sales = { january: 1000, february: 1200, march: 900 }
 const store2Sales = { january: 800, february: 950, march: 1100 }
-mergeObjects(store1Sales, store2Sales)
+console.log(mergeObjects(store1Sales, store2Sales))
 
 //Exemple 4 - Should return {laptop: 0, tablet: 0}
 const inventory = {
@@ -50,7 +50,7 @@ const inventory = {
     tablet: 0,
     headphones: 8,
 }
-filterObject(inventory, (stock) => stock === 0)
+console.log(filterObject(inventory, (stock) => stock === 0))
 //Exemple 5 - SHould return {
 //     app: { name: 'MyApp', version: '1.0.0' },
 //     database: { host: 'localhost', port: 5432 }
@@ -61,7 +61,7 @@ const flatConfig = {
     'database.host': 'localhost',
     'database.port': 5432,
 }
-flatToNested(flatConfig)
+console.log(flatToNested(flatConfig))
 
 //Exemple 6 - Should return ["laptop", "keyboard"]
 const productStock = {
@@ -71,11 +71,11 @@ const productStock = {
     monitor: 3,
 }
 
-findKeysByValue(productStock, 0)
+console.log(findKeysByValue(productStock, 0))
 //Exemple 7 - SHould return { Alice: 100, Bob: 85, Charlie: 90 }
 const playerNames = ['Alice', 'Bob', 'Charlie']
 const scores2 = [100, 85, 90]
-createObjectFromArrays(playerNames, scores2)
+console.log(createObjectFromArrays(playerNames, scores2))
 
 //Exemple 8 - SHould return { pending: 3, delivered: 1, cancelled: 1 }
 const orderStatuses = {
@@ -85,7 +85,7 @@ const orderStatuses = {
     order4: 'cancelled',
     order5: 'pending',
 }
-countValues(orderStatuses)
+console.log(countValues(orderStatuses))
 //Exemple 9 - Should return { name: "Jean Martin", age: 35 }
 const userProfile = {
     name: 'Jean Martin',
@@ -96,7 +96,7 @@ const userProfile = {
 }
 
 const publicInfo = ['name', 'age'] as const
-extractProperties(userProfile, publicInfo)
+console.log(extractProperties(userProfile, publicInfo))
 
 //Exemple 10 - SHould return { Charlie: 78, Alice: 85, Bob: 92, David: 95 }
 const playerScores = {
@@ -106,7 +106,7 @@ const playerScores = {
     David: 95,
 }
 
-sortObjectByValue(playerScores)
+console.log(sortObjectByValue(playerScores))
 //Exemple 11 - Should return 1020
 const gameScores = {
     level1: 850,
@@ -114,7 +114,7 @@ const gameScores = {
     level3: 880,
     level4: 1020,
 }
-findMaxValue(gameScores)
+console.log(findMaxValue(gameScores))
 
 //Exemple 12 - Should return { pommes: 2.5, bananes: 1.8, oranges: 2.2 }
 const productPairs: [string, number][] = [
@@ -122,7 +122,7 @@ const productPairs: [string, number][] = [
     ['bananes', 1.8],
     ['oranges', 2.2],
 ]
-createObjectFromPairs(productPairs)
+console.log(createObjectFromPairs(productPairs))
 
 //Exemple 13 - Should return ["app", "settings", "theme"]
 const config = {
