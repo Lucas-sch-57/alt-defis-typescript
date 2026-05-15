@@ -30,11 +30,12 @@ export const filterByProperty = (users: User[], key: keyof User, property2: stri
 export const groupBy = (products: Product[], filter: keyof Product) => {
     return products.reduce((acc: Record<string, Product[]>, product) => {
         const key = product[filter] as string
-        if (acc[key]) {
-            return { ...acc, [key]: [...acc[key], product] }
-        } else {
-            return { ...acc, [key]: [product] }
-        }
+        if (!acc[key]) {
+            acc[key] = []
+        } 
+        acc[key].push(product)
+        
+        return acc
     }, {} as Record<string, Product[]>)
 }
 
