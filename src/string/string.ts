@@ -47,7 +47,7 @@ export const isExclamationMarkEnding = (sentence: string): boolean => {
  * reverseWord("one two three")    // "three two one"
  */
 export const reverseWord = (sentence: string): string => {
-    const result = sentence.split(/\s/).reverse().join(" ")
+    const result = sentence.split(/\s+/).reverse().join(" ")
     console.log(result)
     return result
 }
