@@ -119,3 +119,7 @@ export const groupByProperty = (students: Array<FlatObject>, groupBy: string) =>
         }
     },{})
 }
+
+export const validateObject = (userInput: FlatObject, userSchema: FlatObject) => {
+    return Object.entries(userSchema).every(([key, val])=> typeof userInput[key] === val)
+}

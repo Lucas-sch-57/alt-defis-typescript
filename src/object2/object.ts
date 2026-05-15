@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -135,3 +135,21 @@ const students = [
 //   "Avancé": [{ name: "David", level: "Avancé" }]
 // }
 console.log(groupByProperty(students, 'level'))
+
+//Exemple 15 - Should return true
+
+// Cas d'usage : Validation d'un formulaire utilisateur
+
+const userSchema = {
+    name: "string",
+    age: "number",
+    email: "string"
+};
+
+const userInput = {
+    name: "Marie",
+    age: 25,
+    email: "marie@email.com"
+};
+
+console.log(validateObject(userInput, userSchema)); 
