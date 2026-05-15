@@ -12,7 +12,7 @@ import { Book, Employee, Product, Transaction, User } from "./array-object"
  * filterByProperty(users, 'active', true)
  * [{ id: 1, name: 'Alice', age: 25, active: true }, ...]
  */
-export const filterByProperty = <K extends keyof User>(users: User[], key: K, value: User[K]) => {
+export const filterByProperty = <K extends keyof User>(users: User[], key: K, value: User[K]): User[] => {
     return users.filter((user) => user[key] === value)
 }
 
@@ -27,7 +27,7 @@ export const filterByProperty = <K extends keyof User>(users: User[], key: K, va
  * groupBy(products, 'category')
  * { Electronics: [...], Clothing: [...] }
  */
-export const groupBy = (products: Product[], filter: keyof Product) => {
+export const groupBy = (products: Product[], filter: keyof Product): Record<string,Product[]> => {
     return products.reduce((acc: Record<string, Product[]>, product) => {
         const key = product[filter] as string
         if (!acc[key]) {
@@ -83,7 +83,7 @@ export const transformArray = <T>(employees: Employee[], transformer: (emp: Empl
  * aggregateData(transactions, 'category', 'amount')
  * { Food: 150, Income: 75 }
  */
-export const aggregateData = (transactions: Transaction[], filter: keyof Transaction, aggregate: keyof Transaction) => {
+export const aggregateData = (transactions: Transaction[], filter: keyof Transaction, aggregate: keyof Transaction): Record<string,number> => {
     return transactions.reduce((acc: Record<string, number>, transac) => {
         const key = transac[filter] as string
         const val = transac[aggregate] as number
