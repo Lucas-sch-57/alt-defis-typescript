@@ -1,4 +1,9 @@
-import { FlatObject, NestedObject, NumberObject } from './types/object'
+import {
+    Difference,
+    FlatObject,
+    NestedObject,
+    NumberObject,
+} from './types/object'
 
 /**
  * Returns all values of a numeric object as an array.
@@ -341,22 +346,33 @@ export const compareDifferences = (
     const newKeys = Object.keys(newProfile)
 
     const allKeys = new Set<string>([...oldKeys, ...newKeys])
-    return Array.from(allKeys).reduce((acc: Record<string, any>, key) => {
-        const oldVal = oldProfile[key]
-        const newVal = newProfile[key]
+    return Array.from(allKeys).reduce(
+        (acc: Record<string, Difference>, key) => {
+            const oldValue = oldProfile[key]
+            const newValue = newProfile[key]
 
-        if (!oldKeys.includes(key)) {
-            return { ...acc, [key]: { type: 'added', new: newVal } }
-        } else if (!newKeys.includes(key)) {
-            return { ...acc, [key]: { type: 'removed', old: oldVal } }
-        } else if (oldVal !== newVal) {
-            return {
-                ...acc,
-                [key]: { type: 'modified', old: oldVal, new: newVal },
+            if (!oldKeys.includes(key)) {
+                acc[key] = {
+                    type: 'added',
+                    new: newValue,
+                }
+            } else if (!newKeys.includes(key)) {
+                acc[key] = {
+                    type: 'removed',
+                    old: oldValue,
+                }
+            } else if (oldValue !== newValue) {
+                acc[key] = {
+                    type: 'modified',
+                    old: oldValue,
+                    new: newValue,
+                }
             }
-        }
-        return acc
-    }, {})
+
+            return acc
+        },
+        {}
+    )
 }
 
 /**

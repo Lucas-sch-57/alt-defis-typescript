@@ -9,3 +9,8 @@ export interface FlatObject {
 export interface NestedObject {
     [key: string]: unknown
 }
+
+export type Difference =
+    | { type: 'added'; new: unknown }
+    | { type: 'removed'; old: unknown }
+    | { type: 'modified'; old: unknown; new: unknown }
