@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject, compareDifferences } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject, compareDifferences, objectToUrlParams1 } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -172,3 +172,13 @@ const newProfile = {
 };
 
 console.log(compareDifferences(oldProfile, newProfile));
+
+//Exemple 17 - Should return query=ordinateur%20portable&maxPrice=1000&brand=Dell&inStock=true
+const searchParams = {
+    query: "ordinateur portable",
+    maxPrice: 1000,
+    brand: "Dell",
+    inStock: true
+};
+
+console.log(objectToUrlParams1(searchParams));

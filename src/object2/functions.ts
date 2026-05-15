@@ -143,3 +143,7 @@ export const compareDifferences = (oldProfile: FlatObject, newProfile: FlatObjec
         return acc
     },{})
 }
+
+export const objectToUrlParams1 = (searchParams: Record<string,any>) => {
+    return new URLSearchParams(searchParams).toString().replace(/\+/g, '%20')
+}
