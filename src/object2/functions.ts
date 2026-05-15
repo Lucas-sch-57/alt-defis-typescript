@@ -155,10 +155,8 @@ export const countValues = (data: FlatObject) => {
     const values = Object.values(data)
 
     const result = values.reduce((acc: Record<string, number>, val) => {
-        return {
-            ...acc,
-            [val]: acc[val] ? acc[val] + 1 : 1,
-        }
+        acc[val] = (acc[val] || 0) + 1
+        return acc
     }, {})
     console.log(result)
     return result
