@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject, compareDifferences } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -138,8 +138,6 @@ console.log(groupByProperty(students, 'level'))
 
 //Exemple 15 - Should return true
 
-// Cas d'usage : Validation d'un formulaire utilisateur
-
 const userSchema = {
     name: "string",
     age: "number",
@@ -153,3 +151,24 @@ const userInput = {
 };
 
 console.log(validateObject(userInput, userSchema)); 
+
+//Exemple 16 - Should return 
+// {
+//     email: { type: "modified", old: "jean@email.com", new: "jean.dupont@email.com" },
+//     age: { type: "modified", old: 30, new: 31 },
+//     phone: { type: "added", new: "0123456789" }
+// }
+const oldProfile = {
+    name: "Jean Dupont",
+    email: "jean@email.com",
+    age: 30
+};
+
+const newProfile = {
+    name: "Jean Dupont",
+    email: "jean.dupont@email.com",
+    age: 31,
+    phone: "0123456789"
+};
+
+console.log(compareDifferences(oldProfile, newProfile));

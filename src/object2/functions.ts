@@ -123,3 +123,23 @@ export const groupByProperty = (students: Array<FlatObject>, groupBy: string) =>
 export const validateObject = (userInput: FlatObject, userSchema: FlatObject) => {
     return Object.entries(userSchema).every(([key, val])=> typeof userInput[key] === val)
 }
+
+export const compareDifferences = (oldProfile: FlatObject, newProfile: FlatObject) => {
+    const oldKeys = Object.keys(oldProfile)
+    const newKeys = Object.keys(newProfile)
+
+    const allKeys = new Set<string>([...oldKeys, ...newKeys])
+    return Array.from(allKeys).reduce((acc:Record<string,any>, key)=>{
+        const oldVal = oldProfile[key]
+        const newVal = newProfile[key]
+
+        if(!oldKeys.includes(key)){
+            return {...acc,[key]:{type: 'added', new: newVal}}
+        } else if(!newKeys.includes(key)){
+            return {...acc, [key]: {type: 'removed', old: oldVal}}
+        }else if (oldVal !== newVal){
+            return {...acc, [key]: {type: 'modified',old:oldVal, new: newVal}}
+        }
+        return acc
+    },{})
+}
