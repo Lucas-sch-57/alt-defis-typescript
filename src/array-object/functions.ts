@@ -67,7 +67,7 @@ export const findIntersection = (library1: Book[], library2: Book[], property: k
  * transformArray(employees, emp => ({ id: emp.id, fullName: `${emp.firstName} ${emp.lastName}`, annualSalary: emp.salary * 12 }))
  * [{ id: 1, fullName: 'John Doe', annualSalary: 600000 }, ...]
  */
-export const transformArray = (employees: Employee[], transformer: (emp: Employee) => object) => {
+export const transformArray = <T>(employees: Employee[], transformer: (emp: Employee) => T): T[] => {
     return employees.map(transformer)
 }
 
