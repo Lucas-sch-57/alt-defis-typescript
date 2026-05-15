@@ -22,17 +22,32 @@ export const firstNameGreeting = (firstName: string): string => {
     return `Bonjour ${result}`
 }
 /**
- * Vérifie si une chaîne de caractères se termine par un point d'exclamation.
- * 
- * @param sentence - La chaîne de caractères à analyser
- * @returns `true` si la chaîne contient un `!`, `false` sinon
- * 
+ * Checks whether a string contains an exclamation mark.
+ *
+ * @param sentence - The string to analyze
+ * @returns `true` if the string contains a `!`, `false` otherwise
+ *
  * @example
- * isExclamationMarkEnding("Bonjour !")  // true
- * isExclamationMarkEnding("Bonjour")    // false
+ * isExclamationMarkEnding("Hello!")  // true
+ * isExclamationMarkEnding("Hello")   // false
  */
 export const isExclamationMarkEnding = (sentence: string): boolean => {
     const result = sentence.endsWith('!')
+    console.log(result)
+    return result
+}
+/**
+ * Reverses the order of words in a string.
+ *
+ * @param sentence - The string to reverse
+ * @returns The string with words in reverse order
+ *
+ * @example
+ * reverseWord("Hello world")      // "world Hello"
+ * reverseWord("one two three")    // "three two one"
+ */
+export const reverseWord = (sentence: string): string => {
+    const result = sentence.split(/\s/).reverse().join(" ")
     console.log(result)
     return result
 }
@@ -43,3 +58,5 @@ strLength("Bonjour le monde !")
 firstNameGreeting('jean-pierre')
 //Exemple 3 - Should return true 
 isExclamationMarkEnding('Wow !')
+//Exemple 4 - Should return pomme une mange Je
+reverseWord("Je mange une pomme")
