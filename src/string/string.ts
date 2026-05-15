@@ -93,7 +93,7 @@ export const toCamelCase = (data: string): string => {
  * vowelsCount("Hello world")  // 3
  * vowelsCount("rhythm")       // 0
  */
-export const vowelsCount = (sentence: string) : number | undefined => {
+export const vowelsCount = (sentence: string) : number => {
     const regex = /[aeiouAEIOU]/g
     const matches = sentence.match(regex)
     const result = matches !== null ? matches.length : 0
