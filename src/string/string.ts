@@ -186,7 +186,15 @@ export const isPalindrome = (sentence: string) : boolean => {
     const result = clean === clean.split('').reverse().join('')
     console.log(result)
     return result
-
+}
+export const longestSequence = (input: string) : string | undefined => {
+    const regex = /(.)\1*/g
+    const array = input.match(regex)
+    const result = array?.reduce((longest, curr)=>{
+        return curr.length > longest.length ? curr : longest
+    })
+    console.log(result)
+    return result
 }
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
@@ -212,4 +220,5 @@ extractInitials("Lucas Schiltz")
 maskString("1234567890123456",4)
 //Exemple 12 - Should return true
 isPalindrome("Eh ! ça va la vache ?")
-
+//Exemple 13 - Should return "bbbbb"
+longestSequence("aaabbbbbcccc")
