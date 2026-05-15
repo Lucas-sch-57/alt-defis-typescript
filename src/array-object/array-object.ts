@@ -1,6 +1,6 @@
 //Exemple 1 - [{id: 1, name: 'Alice', age: 25, active: true}, {id: 3, name: 'Charlie', age: 35, active: true}]
 
-import { filterByProperty, groupBy } from "./functions";
+import { filterByProperty, findIntersection, groupBy } from "./functions";
 
 export interface User {
     id: number;
@@ -34,3 +34,22 @@ const products: Product[] = [
 ];
 
 console.log(groupBy(products, 'category'))
+
+///Exemple 3 - Should return [{ id: 1, title: "1984", author: "Orwell", available: true }]
+export interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+}
+
+const library1: Book[] = [
+    { id: 1, title: "1984", author: "Orwell", available: true },
+    { id: 2, title: "Dune", author: "Herbert", available: false }
+];
+const library2: Book[] = [
+    { id: 3, title: "1984", author: "Orwell", available: true },
+    { id: 4, title: "Foundation", author: "Asimov", available: true }
+];
+
+console.log(findIntersection(library1, library2, 'title'));
