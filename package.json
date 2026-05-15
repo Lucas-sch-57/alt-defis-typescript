@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "string": "ts-node src/string/string.ts"
+    "string": "ts-node src/string/string.ts",
+    "object": "ts-node src/object2/object.ts"
   },
   "keywords": [],
   "author": "",
