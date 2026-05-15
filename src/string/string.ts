@@ -5,7 +5,6 @@
  */
 export const strLength = (string: string): number => {  
     const result = string.replace(/\s/g,"").length
-    console.log(result)
     return result
 }
 
@@ -17,10 +16,14 @@ export const strLength = (string: string): number => {
  */
 export const firstNameGreeting = (firstName: string): string => {
     //Récupère les parties du prénom, si prénom composé
-    const result = firstName.split('-').map((split)=> split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('-')
-    console.log(`Bonjour ${result}`)
+    const result = firstName
+        .split('-')
+        .map((split)=> split.charAt(0).toUpperCase() + split.slice(1).toLowerCase())
+        .join('-')
+
     return `Bonjour ${result}`
 }
+
 /**
  * Checks whether a string contains an exclamation mark.
  *
@@ -33,9 +36,9 @@ export const firstNameGreeting = (firstName: string): string => {
  */
 export const isExclamationMarkEnding = (sentence: string): boolean => {
     const result = sentence.endsWith('!')
-    console.log(result)
     return result
 }
+
 /**
  * Reverses the order of words in a string.
  *
@@ -48,9 +51,9 @@ export const isExclamationMarkEnding = (sentence: string): boolean => {
  */
 export const reverseWord = (sentence: string): string => {
     const result = sentence.split(/\s+/).reverse().join(" ")
-    console.log(result)
     return result
 }
+
 /**
  * Counts the number of occurrences of a character in a string.
  *
@@ -64,9 +67,9 @@ export const reverseWord = (sentence: string): string => {
  */
 export const charsOccur = (sentence: string, char: string): number => {
     const result = sentence.split("").filter((split)=>split === char).length
-    console.log(result)
     return result
 }
+
 /**
  * Converts a snake_case string to camelCase.
  *
@@ -79,10 +82,18 @@ export const charsOccur = (sentence: string, char: string): number => {
  * toCamelCase("hello")             // "hello"
  */
 export const toCamelCase = (data: string): string => {
-    const result = data.split('_').map((split, i)=> i===0?split.toLowerCase() : split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('')
-    console.log(result)
+    const result = data
+        .split('_')
+        .map((split, i)=> 
+            i === 0
+                ? split.toLowerCase()
+                : split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()
+        )
+        .join('')
+
     return result
 } 
+
 /**
  * Counts the number of vowels in a string.
  *
@@ -97,9 +108,10 @@ export const vowelsCount = (sentence: string) : number => {
     const regex = /[aeiouAEIOU]/g
     const matches = sentence.match(regex)
     const result = matches !== null ? matches.length : 0
-    console.log(result)
+
     return result
 }
+
 /**
  * Alternates the case of each character in a string,
  * starting with uppercase for the first character.
@@ -112,10 +124,14 @@ export const vowelsCount = (sentence: string) : number => {
  * minMajAlternate("hello world")  // "HeLlO WoRlD"
  */
 export const minMajAlternate = (data: string) : string => {
-    const result = data.split('').map((split,i)=> i % 2 === 0 ? split.toUpperCase() : split.toLowerCase()).join('')
-    console.log(result)
+    const result = data
+        .split('')
+        .map((split,i)=> i % 2 === 0 ? split.toUpperCase() : split.toLowerCase())
+        .join('')
+
     return result
 }
+
 /**
  * Removes consecutive duplicate characters from a string.
  *
@@ -129,15 +145,18 @@ export const minMajAlternate = (data: string) : string => {
  */
 export const removeDuplicate = (data: string): string  => {
     const splitted = data.split('')
+
     const result = splitted.filter((char,i,arr)=>{
         if(i === 0 ){
             return char
         }
+
         return char !== arr[i-1]
     })
-    console.log(result.join(''))
+
     return result.join('')
 }
+
 /**
  * Extracts the initials from a full name.
  *
@@ -149,10 +168,15 @@ export const removeDuplicate = (data: string): string  => {
  * extractInitials("john doe")            // "JD"
  */
 export const extractInitials = (fullName: string) => {
-    const result =  fullName.split(/\s+/).filter(Boolean).map((split)=> split.slice(0,1).toUpperCase()).join('')
-    console.log(result)
+    const result =  fullName
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((split)=> split.slice(0,1).toUpperCase())
+        .join('')
+
     return result
 }
+
 /**
  * Returns the last N characters of a string, masking the rest.
  *
@@ -166,9 +190,9 @@ export const extractInitials = (fullName: string) => {
  */
 export const maskString = (string: string, threshold: number) => {
     const result = string.slice(string.length - threshold)
-    console.log(result)
     return result
 }
+
 /**
  * Checks whether a string is a palindrome,
  * ignoring spaces, punctuation, accents and case.
@@ -182,11 +206,17 @@ export const maskString = (string: string, threshold: number) => {
  * isPalindrome("hello")                  // false
  */
 export const isPalindrome = (sentence: string) : boolean => {
-    const clean = sentence.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '')
+    const clean = sentence
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '')
+
     const result = clean === clean.split('').reverse().join('')
-    console.log(result)
+
     return result
 }
+
 /**
  * Finds the longest sequence of consecutive identical characters in a string.
  *
@@ -200,12 +230,14 @@ export const isPalindrome = (sentence: string) : boolean => {
 export const longestSequence = (input: string) : string | undefined => {
     const regex = /(.)\1*/g
     const array = input.match(regex)
+
     const result = array?.reduce((longest, curr)=>{
         return curr.length > longest.length ? curr : longest
     })
-    console.log(result)
+
     return result
 }
+
 /**
  * Truncates a string to a given limit and appends ellipsis if necessary.
  *
@@ -219,9 +251,9 @@ export const longestSequence = (input: string) : string | undefined => {
  */
 export const truncate = (data: string, limit: number) : string => {
     const result = data.length > limit ? data.slice(0,limit) + '...' : data
-    console.log(result)
     return result
 }
+
 /**
  * Capitalizes the first letter of each word in a string.
  *
@@ -239,36 +271,50 @@ export const capitalizeWords = (sentence: string): string => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(' ')
 
-    console.log(result)
     return result
 }
-//Exemple 1 - Should return 15
-strLength("Bonjour le monde !")
-//Exemple 2 - Should return "Bonjour Jean-Pierre"
-firstNameGreeting('jean-pierre')
-//Exemple 3 - Should return true 
-isExclamationMarkEnding('Wow !')
-//Exemple 4 - Should return pomme une mange Je
-reverseWord("Je mange une pomme")
-//Exmple 5 - SHould return 2
-charsOccur("Bonjour je m'apelle Lucas", "o")
-//Exemple 6 - Should return userFirstName
-toCamelCase('user_first_name')
-//Exemple 7 - Should return 9
-vowelsCount("Bonjour je m'apelle Lucas")
-//Exemple 8 - Should return NaOnZoDaZoIeDjAoEjOiAjEoJaEjAoEjOaJo
-minMajAlternate("naonzodazoiedjaoejoiajeojaejaoejoajo")
-//Exemple 9 - Should return Bonjour ! J'ai besoin d'aide.
-removeDuplicate("Bonjouuuur !!! J'ai besoiiiin d'aide....")
-//Exemple 10 - Should return LS
-extractInitials("Lucas Schiltz")
-//Exemple 11 - Should return 3456
-maskString("1234567890123456",4)
-//Exemple 12 - Should return true
-isPalindrome("Eh ! ça va la vache ?")
-//Exemple 13 - Should return "bbbbb"
-longestSequence("aaabbbbbcccc")
-//Exemple 14 - Should return 'Ceci est une très...
-truncate("Ceci est une très longue description d'un produit",20)
-//Exemple 15 - Should return Bienvenue Sur Notre Site Web
-capitalizeWords("bienvenue sur notre site web")
+
+// Exemple 1 - Should return 15
+console.log(strLength("Bonjour le monde !"))
+
+// Exemple 2 - Should return "Bonjour Jean-Pierre"
+console.log(firstNameGreeting('jean-pierre'))
+
+// Exemple 3 - Should return true 
+console.log(isExclamationMarkEnding('Wow !'))
+
+// Exemple 4 - Should return "pomme une mange Je"
+console.log(reverseWord("Je mange une pomme"))
+
+// Exemple 5 - Should return 2
+console.log(charsOccur("Bonjour je m'apelle Lucas", "o"))
+
+// Exemple 6 - Should return userFirstName
+console.log(toCamelCase('user_first_name'))
+
+// Exemple 7 - Should return 9
+console.log(vowelsCount("Bonjour je m'apelle Lucas"))
+
+// Exemple 8 - Should return NaOnZoDaZoIeDjAoEjOiAjEoJaEjAoEjOaJo
+console.log(minMajAlternate("naonzodazoiedjaoejoiajeojaejaoejoajo"))
+
+// Exemple 9 - Should return "Bonjour ! J'ai besoin d'aide."
+console.log(removeDuplicate("Bonjouuuur !!! J'ai besoiiiin d'aide...."))
+
+// Exemple 10 - Should return LS
+console.log(extractInitials("Lucas Schiltz"))
+
+// Exemple 11 - Should return 3456
+console.log(maskString("1234567890123456",4))
+
+// Exemple 12 - Should return true
+console.log(isPalindrome("Eh ! ça va la vache ?"))
+
+// Exemple 13 - Should return "bbbbb"
+console.log(longestSequence("aaabbbbbcccc"))
+
+// Exemple 14 - Should return "Ceci est une très..."
+console.log(truncate("Ceci est une très longue description d'un produit",20))
+
+// Exemple 15 - Should return "Bienvenue Sur Notre Site Web"
+console.log(capitalizeWords("bienvenue sur notre site web"))
