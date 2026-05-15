@@ -12,8 +12,8 @@ import { Book, Employee, Product, Transaction, User } from "./array-object"
  * filterByProperty(users, 'active', true)
  * [{ id: 1, name: 'Alice', age: 25, active: true }, ...]
  */
-export const filterByProperty = (users: User[], key: keyof User, property2: string | boolean | number) => {
-    return users.filter((user) => user[key] === property2)
+export const filterByProperty = <K extends keyof User>(users: User[], key: K, value: User[K]) => {
+    return users.filter((user) => user[key] === value)
 }
 
 /**
