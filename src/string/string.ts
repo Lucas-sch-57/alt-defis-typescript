@@ -51,7 +51,22 @@ export const reverseWord = (sentence: string): string => {
     console.log(result)
     return result
 }
-
+/**
+ * Counts the number of occurrences of a character in a string.
+ *
+ * @param sentence - The string to analyze
+ * @param char - The character to search for
+ * @returns The number of times the character appears in the string
+ *
+ * @example
+ * charsOccur("Hello world", "l")  // 3
+ * charsOccur("Hello world", "o")  // 2
+ */
+export const charsOccur = (sentence: string, char: string): number => {
+    const result = sentence.split("").filter((split)=>split === char).length
+    console.log(result)
+    return result
+}
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -60,3 +75,5 @@ firstNameGreeting('jean-pierre')
 isExclamationMarkEnding('Wow !')
 //Exemple 4 - Should return pomme une mange Je
 reverseWord("Je mange une pomme")
+//Exmple 5 - SHould return 2
+charsOccur("Bonjour je m'apelle Lucas", "o")
