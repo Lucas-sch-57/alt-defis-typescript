@@ -1,6 +1,6 @@
 //Exemple 1 - [{id: 1, name: 'Alice', age: 25, active: true}, {id: 3, name: 'Charlie', age: 35, active: true}]
 
-import { filterByProperty } from "./functions";
+import { filterByProperty, groupBy } from "./functions";
 
 export interface User {
     id: number;
@@ -16,3 +16,21 @@ const users: User[] = [
     { id: 3, name: 'Charlie', age: 35, active: true }
 ];
 console.log(filterByProperty(users, 'active', true));
+//Exemple 2 - Should return 
+// { Electronics: [...], Clothing: [...] }
+export interface Product {
+    id: number;
+    name: string;
+    category: string;
+    price: number;
+}
+
+// Cas d'usage : Regroupement de produits par catégorie dans un e-commerce
+
+const products: Product[] = [
+    { id: 1, name: 'Laptop', category: 'Electronics', price: 999 },
+    { id: 2, name: 'Smartphone', category: 'Electronics', price: 699 },
+    { id: 3, name: 'T-shirt', category: 'Clothing', price: 29 }
+];
+
+console.log(groupBy(products, 'category'))
