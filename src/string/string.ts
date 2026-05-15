@@ -91,6 +91,12 @@ export const vowelsCount = (sentence: string) : number | undefined => {
     console.log(result)
     return result
 }
+
+export const minMajAlternate = (data: string) : string => {
+    const result = data.split('').map((split,i)=> i % 2 === 0 ? split.toUpperCase() : split.toLowerCase()).join('')
+    console.log(result)
+    return result
+}
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -105,3 +111,5 @@ charsOccur("Bonjour je m'apelle Lucas", "o")
 toCamelCase('user_first_name')
 //Exemple 7 - Should return 9
 vowelsCount("Bonjour je m'apelle Lucas")
+//Exemple 8 - Should return NaOnZoDaZoIeDjAoEjOiAjEoJaEjAoEjOaJo
+minMajAlternate("naonzodazoiedjaoejoiajeojaejaoejoajo")
