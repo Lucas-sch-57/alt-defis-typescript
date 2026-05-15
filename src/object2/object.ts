@@ -66,6 +66,11 @@ export const countValues = (data: FlatObject) => {
 
 }
 
+export const extractProperties = (data: FlatObject, infos: ReadonlyArray<string>) => {
+    const array = Object.fromEntries(Object.entries(data).filter(([key])=> infos.includes(key)))
+    console.log(array)
+}
+
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
     level1: 100,
@@ -132,3 +137,14 @@ const orderStatuses = {
     order5: "pending"
 };
 countValues(orderStatuses)
+//Exemple 9 - Should return { name: "Jean Martin", age: 35 }
+const userProfile = {
+    name: "Jean Martin",
+    email: "jean@email.com",
+    password: "secret123",
+    age: 35,
+    address: "123 rue Principal"
+};
+
+const publicInfo = ["name", "age"] as const;
+extractProperties(userProfile, publicInfo);
