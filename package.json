@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "string": "ts-node src/string/string.ts",
-    "object": "ts-node src/object2/object.ts"
+    "object": "ts-node src/object2/object.ts",
+    "array-object": "ts-node src/array-object/array-object.ts"
   },
   "keywords": [],
   "author": "",
