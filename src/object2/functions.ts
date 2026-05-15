@@ -1,4 +1,4 @@
-import { FlatObject, NumberObject } from './types/object'
+import { FlatObject, NestedObject, NumberObject } from './types/object'
 
 /**
  * Returns all values of a numeric object as an array.
@@ -254,7 +254,7 @@ export const createObjectFromPairs = (products: Array<[string, number]>) => {
  * ["app", "settings", "theme"]
  */
 export const findValueInObject = (
-    config: Object,
+    config: NestedObject,
     search: string,
     path: string[]
 ): string[] | null => {
@@ -262,8 +262,15 @@ export const findValueInObject = (
         if (value === search) {
             return [...path, key]
         }
-        if (typeof value === 'object' && value !== null) {
-            const result = findValueInObject(value, search, [...path, key])
+        if (
+            typeof value === 'object' &&
+            value !== null &&
+            !Array.isArray(value)
+        ) {
+            const result = findValueInObject(value as NestedObject, search, [
+                ...path,
+                key,
+            ])
             if (result) {
                 return result
             }
