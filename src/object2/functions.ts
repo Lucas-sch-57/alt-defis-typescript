@@ -106,3 +106,16 @@ export const findValueInObject = (config: Object, search: string, path: string[]
 
     return null
 }
+export const groupByProperty = (students: Array<FlatObject>, groupBy: string) => {
+    return students.reduce((acc: Record<string,FlatObject[]>,stud)=>{
+        const key = stud[groupBy]
+        if(acc[key]) {
+            return {
+                ...acc,
+                [key]: [...acc[key] ,stud]
+            }
+        } else {
+            return {...acc,[key]:[stud]}
+        }
+    },{})
+}

@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -119,3 +119,19 @@ const config = {
     }
 };
 console.log(findValueInObject(config,'dark', []))
+const students = [
+    { name: "Alice", level: "Débutant" },
+    { name: "Bob", level: "Intermédiaire" },
+    { name: "Charlie", level: "Débutant" },
+    { name: "David", level: "Avancé" }
+];
+//Exemple 14. - Should return 
+// {
+//   "Débutant": [
+//     { name: "Alice", level: "Débutant" },
+//     { name: "Charlie", level: "Débutant" }
+//   ],
+//   "Intermédiaire": [{ name: "Bob", level: "Intermédiaire" }],
+//   "Avancé": [{ name: "David", level: "Avancé" }]
+// }
+console.log(groupByProperty(students, 'level'))
