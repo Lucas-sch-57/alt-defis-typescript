@@ -83,7 +83,16 @@ export const toCamelCase = (data: string): string => {
     console.log(splitted)
     return splitted
 } 
-
+/**
+ * Counts the number of vowels in a string.
+ *
+ * @param sentence - The string to analyze
+ * @returns The number of vowels found in the string, or 0 if none
+ *
+ * @example
+ * vowelsCount("Hello world")  // 3
+ * vowelsCount("rhythm")       // 0
+ */
 export const vowelsCount = (sentence: string) : number | undefined => {
     const regex = /[aeiouAEIOU]/g
     const matches = sentence.match(regex)
@@ -91,7 +100,17 @@ export const vowelsCount = (sentence: string) : number | undefined => {
     console.log(result)
     return result
 }
-
+/**
+ * Alternates the case of each character in a string,
+ * starting with uppercase for the first character.
+ *
+ * @param data - The string to transform
+ * @returns The string with alternating uppercase and lowercase characters
+ *
+ * @example
+ * minMajAlternate("hello")        // "HeLlO"
+ * minMajAlternate("hello world")  // "HeLlO WoRlD"
+ */
 export const minMajAlternate = (data: string) : string => {
     const result = data.split('').map((split,i)=> i % 2 === 0 ? split.toUpperCase() : split.toLowerCase()).join('')
     console.log(result)
