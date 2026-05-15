@@ -147,3 +147,30 @@ export const compareDifferences = (oldProfile: FlatObject, newProfile: FlatObjec
 export const objectToUrlParams1 = (searchParams: Record<string,any>) => {
     return new URLSearchParams(searchParams).toString().replace(/\+/g, '%20')
 }
+
+// J'ai chercher les formules sur internet pour être honnête
+export const getObjectStats = (datas: NumberObject) => {
+    const values = Object.values(datas)
+    const total = values.reduce((acc,val)=>acc + val ,0)
+    const min = Math.min(...values)
+    const max = Math.max(...values)
+    const average = total / values.length
+    const sortedValues = [...values].sort((a,b)=>a-b);
+    const half = Math.floor(sortedValues.length / 2);
+    const median = sortedValues.length % 2 === 0 ? (sortedValues[sortedValues.length / 2 - 1] + sortedValues[sortedValues.length / 2]) / 2 : sortedValues[half]
+    const variance = values.reduce((acc, val) => acc + Math.pow(val - average, 2), 0) / values.length
+    const standardDeviation = parseFloat(Math.sqrt(variance).toFixed(2))
+    return {
+        basic: {
+            min,
+            max,
+            average,
+            total
+        },
+        advanced: {
+            median,
+            standardDeviation,
+            variance
+        }
+    }
+}

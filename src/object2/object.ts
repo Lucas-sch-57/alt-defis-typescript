@@ -1,4 +1,4 @@
-import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject, compareDifferences, objectToUrlParams1 } from "./functions";
+import { getObjectValues, countValues,createObjectFromArrays,extractProperties,filterObject,findKeysByValue,flatToNested1,mergeObjects,sortObjectByValue,transformValues, findMaxValue, createObjectFromPairs, findValueInObject, groupByProperty, validateObject, compareDifferences, objectToUrlParams1, getObjectStats } from "./functions";
 import { NumberObject } from "./types/object";
 
 //Example 1 - Should return [100,85,95]
@@ -182,3 +182,28 @@ const searchParams = {
 };
 
 console.log(objectToUrlParams1(searchParams));
+
+//Exemple 18 - Should return 
+/**
+* {
+*  basic: {
+*    min: 900,
+*    max: 1500,
+*    average: 1150,
+*    total: 4600
+*  },
+*  advanced: {
+*    median: 1100,
+*    variance: 52500,
+*    standardDeviation: 229.13
+*  }
+*}
+*/
+const monthlyRevenues = {
+    january: 1000,
+    february: 1200,
+    march: 900,
+    april: 1500
+};
+
+console.log(getObjectStats(monthlyRevenues));
