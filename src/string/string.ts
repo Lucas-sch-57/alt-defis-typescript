@@ -234,7 +234,8 @@ export const truncate = (data: string, limit: number) : string => {
  */
 export const capitalizeWords = (sentence: string): string => {
     const result = sentence
-        .split(' ')
+        .split(/\s+/)
+        .filter(Boolean)
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(' ')
 
