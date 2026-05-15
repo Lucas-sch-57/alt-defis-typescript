@@ -1,6 +1,6 @@
 //Exemple 1 - [{id: 1, name: 'Alice', age: 25, active: true}, {id: 3, name: 'Charlie', age: 35, active: true}]
 
-import { filterByProperty, findIntersection, groupBy } from "./functions";
+import { filterByProperty, findIntersection, groupBy, transformArray } from "./functions";
 
 export interface User {
     id: number;
@@ -53,3 +53,23 @@ const library2: Book[] = [
 ];
 
 console.log(findIntersection(library1, library2, 'title'));
+
+//Exemple 4 - Should return [{id: 1, fullName: 'John Doe', annualSalary: 600000}, ...]
+export interface Employee {
+    id: number;
+    firstName: string;
+    lastName: string;
+    salary: number;
+}
+const employees: Employee[] = [
+    { id: 1, firstName: 'John', lastName: 'Doe', salary: 50000 },
+    { id: 2, firstName: 'Jane', lastName: 'Smith', salary: 60000 }
+];
+
+const transformer = (emp: Employee) => ({
+    id: emp.id,
+    fullName: `${emp.firstName} ${emp.lastName}`,
+    annualSalary: emp.salary * 12
+});
+
+console.log(transformArray(employees,transformer))
