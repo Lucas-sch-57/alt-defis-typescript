@@ -41,6 +41,12 @@ export const flatToNested1 = (config: FlatObject )=> {
     return result
 }
 
+export const findKeysByValue = (data: NumberObject, searchVal: number) => {
+    const result = Object.entries(data).filter(([,val])=>val === searchVal).map(([key,])=> key)
+    console.log(result)
+    return result
+}
+
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
     level1: 100,
@@ -83,3 +89,13 @@ const flatConfig = {
     'database.port': 5432
 };
 flatToNested1(flatConfig)
+
+//Exemple 6 - Should return ["laptop", "keyboard"]
+const productStock = {
+    laptop: 0,
+    mouse: 5,
+    keyboard: 0,
+    monitor: 3
+};
+
+findKeysByValue(productStock, 0)
