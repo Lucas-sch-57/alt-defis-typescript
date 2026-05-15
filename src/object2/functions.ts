@@ -215,10 +215,12 @@ export const sortObjectByValue = (data: NumberObject) => {
  * findMaxValue({ Alice: 85, Bob: 92, Charlie: 78 })  // 92
  */
 export const findMaxValue = (scores: NumberObject) => {
-    const result = Object.entries(scores).reduce((acc, value) => {
-        const [, val] = value
-        return acc < val ? val : acc
-    }, 0)
+    const values = Object.values(scores)
+
+    if (values.length === 0) {
+        throw new Error('Cannot be empty')
+    }
+    const result = Math.max(...values)
     console.log(result)
     return result
 }
