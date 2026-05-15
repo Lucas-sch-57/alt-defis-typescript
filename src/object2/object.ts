@@ -71,6 +71,11 @@ export const extractProperties = (data: FlatObject, infos: ReadonlyArray<string>
     console.log(array)
 }
 
+export const sortObjectByValue = (data: NumberObject) => {
+    const result = Object.fromEntries(Object.entries(data).sort(([,val1],[,val2])=> val1 - val2))
+    console.log(result)
+    return result
+}
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
     level1: 100,
@@ -148,3 +153,13 @@ const userProfile = {
 
 const publicInfo = ["name", "age"] as const;
 extractProperties(userProfile, publicInfo);
+
+//Exemple 10 - SHould return { Charlie: 78, Alice: 85, Bob: 92, David: 95 }
+const playerScores = {
+    Alice: 85,
+    Bob: 92,
+    Charlie: 78,
+    David: 95
+};
+
+sortObjectByValue(playerScores)
