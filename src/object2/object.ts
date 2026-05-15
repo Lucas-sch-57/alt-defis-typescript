@@ -1,4 +1,4 @@
-import {  NumberObject } from "./types/object";
+import {  FlatObject, NumberObject } from "./types/object";
 
 export const getObjectValues = (object:NumberObject ): Array<number> => {
     const result = Object.values(object)
@@ -24,6 +24,22 @@ export const filterObject = (inventory: NumberObject, condition: (value: number)
     return result
 
 } 
+
+export const flatToNested1 = (config: FlatObject )=> {
+    const result = Object.entries(config).reduce((acc: Record<string,any>,[key,value])=>{
+        const [parent, child] = key.split('.')
+        return    {
+            ...acc,
+            [parent]: {
+                ...acc[parent],
+                [child]: value
+            }
+        }
+   
+    }, {})
+    console.log(result)
+    return result
+}
 
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
@@ -56,3 +72,14 @@ const inventory = {
     headphones: 8
 };
 filterObject(inventory, stock => stock === 0);
+//Exemple 5 - SHould return {
+//     app: { name: 'MyApp', version: '1.0.0' },
+//     database: { host: 'localhost', port: 5432 }
+// }
+const flatConfig = {
+    'app.name': 'MyApp',
+    'app.version': '1.0.0',
+    'database.host': 'localhost',
+    'database.port': 5432
+};
+flatToNested1(flatConfig)
