@@ -290,17 +290,15 @@ export const findValueInObject = (
  * groupByProperty([{ name: "Alice", level: "Débutant" }, { name: "Bob", level: "Avancé" }], "level")
  * { "Débutant": [{ name: "Alice", level: "Débutant" }], "Avancé": [{ name: "Bob", level: "Avancé" }] }
  */
-export const groupByProperty = (
-    students: Array<FlatObject>,
-    groupBy: string
-) => {
+export const groupByProperty = (students: FlatObject[], groupBy: string) => {
     return students.reduce((acc: Record<string, FlatObject[]>, stud) => {
         const key = stud[groupBy] as string
-        if (acc[key]) {
-            return { ...acc, [key]: [...acc[key], stud] }
-        } else {
-            return { ...acc, [key]: [stud] }
+        if (!acc[key]) {
+            acc[key] = []
         }
+
+        acc[key].push(stud)
+        return acc
     }, {})
 }
 
