@@ -222,6 +222,25 @@ export const truncate = (data: string, limit: number) : string => {
     console.log(result)
     return result
 }
+/**
+ * Capitalizes the first letter of each word in a string.
+ *
+ * @param sentence - The string to capitalize
+ * @returns The string with the first letter of each word capitalized
+ *
+ * @example
+ * capitalizeWords("bienvenue sur notre site web")  // "Bienvenue Sur Notre Site Web"
+ * capitalizeWords("hello world")                   // "Hello World"
+ */
+export const capitalizeWords = (sentence: string): string => {
+    const result = sentence
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+
+    console.log(result)
+    return result
+}
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -250,3 +269,5 @@ isPalindrome("Eh ! ça va la vache ?")
 longestSequence("aaabbbbbcccc")
 //Exemple 14 - Should return 'Ceci est une très...
 truncate("Ceci est une très longue description d'un produit",20)
+//Exemple 15 - Should return Bienvenue Sur Notre Site Web
+capitalizeWords("bienvenue sur notre site web")
