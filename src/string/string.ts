@@ -83,6 +83,14 @@ export const toCamelCase = (data: string): string => {
     console.log(splitted)
     return splitted
 } 
+
+export const vowelsCount = (sentence: string) : number | undefined => {
+    const regex = /[aeiouAEIOU]/g
+    const matches = sentence.match(regex)
+    const result = matches !== null ? matches.length : 0
+    console.log(result)
+    return result
+}
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
 //Exemple 2 - Should return "Bonjour Jean-Pierre"
@@ -95,3 +103,5 @@ reverseWord("Je mange une pomme")
 charsOccur("Bonjour je m'apelle Lucas", "o")
 //Exemple 6 - Should return userFirstName
 toCamelCase('user_first_name')
+//Exemple 7 - Should return 9
+vowelsCount("Bonjour je m'apelle Lucas")
