@@ -9,7 +9,20 @@ export const strLength = (string: string): number => {
     return result
 }
 
-
+/**
+ * Replace first letters of a firstName to put them in upperCase on return a greeting message
+ * Split composed firstName and join it again for the result
+ * @param firstName - The firstname to return
+ * @returns - A greeting message with uppercase first letters of the firstname
+ */
+export const firstNameGreeting = (firstName: string): string => {
+    //Récupère les parties du prénom, si prénom composé
+    const result = firstName.split('-').map((split)=> split.charAt(0).toUpperCase() + split.slice(1).toLowerCase()).join('-')
+    console.log(`Bonjour ${result}`)
+    return `Bonjour ${result}`
+}
 
 //Exemple 1 - Should return 15
 strLength("Bonjour le monde !")
+//Exemple 2 - Should return "Bonjour Jean-Pierre"
+firstNameGreeting('jean-pierre')
