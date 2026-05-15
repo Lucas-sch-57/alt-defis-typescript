@@ -52,6 +52,20 @@ export const createObjectFromArrays = (array1: Array<string>, array2: Array<numb
     console.log(result)
 }
 
+export const countValues = (data: FlatObject) => {
+    const values = Object.values(data)
+
+    const result = values.reduce((acc: Record<string,number>, val)=> {
+        return {
+            ...acc,
+            [val]: acc[val] ? acc[val] + 1 : 1
+        }
+    }, {})
+    console.log(result)
+    return result
+
+}
+
 //Example 1 - Should return [100,85,95]
 const scores: NumberObject = {
     level1: 100,
@@ -108,3 +122,13 @@ findKeysByValue(productStock, 0)
 const playerNames = ["Alice", "Bob", "Charlie"];
 const scores2 = [100, 85, 90];
 createObjectFromArrays(playerNames, scores2)
+
+//Exemple 8 - SHould return { pending: 3, delivered: 1, cancelled: 1 }
+const orderStatuses = {
+    order1: "pending",
+    order2: "delivered",
+    order3: "pending",
+    order4: "cancelled",
+    order5: "pending"
+};
+countValues(orderStatuses)
