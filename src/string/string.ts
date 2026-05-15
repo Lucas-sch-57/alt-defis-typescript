@@ -127,7 +127,7 @@ export const minMajAlternate = (data: string) : string => {
  * removeDuplicate("aabbcc")         // "abc"
  * removeDuplicate("hello")          // "helo"
  */
-export const removeDuplicate = (data: string)  => {
+export const removeDuplicate = (data: string): string  => {
     const splitted = data.split('')
     const result = splitted.filter((char,i,arr)=>{
         if(i === 0 ){
@@ -136,7 +136,7 @@ export const removeDuplicate = (data: string)  => {
         return char !== arr[i-1]
     })
     console.log(result.join(''))
-    return result
+    return result.join('')
 }
 /**
  * Extracts the initials from a full name.
